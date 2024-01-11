@@ -28,24 +28,7 @@ const corsOptions = {
   },
 };
 
-// const corsOptions = {
-//   origin: function (origin, callback) {
-//     if (
-//       process.env.NODE_ENV !== "production" ||
-//       allowedOrigins.includes(origin)
-//     ) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error("Not allowed by CORS"));
-//     }
-//   },
-//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//   credentials: true,
-//   optionsSuccessStatus: 204,
-// };
-
 app.use(cors(corsOptions));
-
 // app.use(cors());
 
 app.use(express.json());
