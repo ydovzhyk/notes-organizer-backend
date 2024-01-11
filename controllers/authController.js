@@ -18,7 +18,6 @@ const register = async (req, res, next) => {
 
     const passwordHash = await bcrypt.hash(password, 10);
 
-    // const today = moment().tz("Europe/Kiev").format("DD.MM.YYYY HH:mm");
     const today = moment().tz("Europe/Kiev").format();
 
     const newUser = await User.create({
