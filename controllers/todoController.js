@@ -124,8 +124,6 @@ const getTodosSearch = async (req, res, next) => {
 
     const todosSearch = await searchTodos(searchData, todos);
 
-    console.log("Це результат пошуку", todosSearch);
-
     res.status(200).json({ arrayTodosSearch: todosSearch });
   } catch (error) {
     next(error);
@@ -173,10 +171,6 @@ const synchronizeTodo = async (req, res, next) => {
           existingTodo.otherMembers === todoToSync.otherMembers
       );
     });
-
-    console.log(todosToSync.length);
-    console.log(existingTodos.length);
-    console.log(todosToSave.length);
 
     const promises = todosToSave.map(async (todoToSave) => {
       const newTodo = new Todo({
