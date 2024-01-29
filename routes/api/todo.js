@@ -41,4 +41,7 @@ router.post(
 //synchronize
 router.post("/synchronize", authorize, ctrlWrapper(ctrl.synchronizeTodo));
 
+//get edit product by id
+router.get("/:id", isValidId, ctrlWrapper(ctrl.getTodoByIdController));
+
 module.exports = router;

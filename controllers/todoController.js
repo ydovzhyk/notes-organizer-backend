@@ -190,10 +190,22 @@ const synchronizeTodo = async (req, res, next) => {
   }
 };
 
+//get Edit Todo by ID
+const getTodoByIdController = async (req, res, next) => {
+  const { id } = req.params;
+  console.log(id);
+  const todoById = await Todo.findById(id);
+  if (!todoById) {
+    return next(RequestError(404, "Not found"));
+  }
+  return res.status(200).json(todoById);
+};
+
 module.exports = {
   createTodo,
   editTodo,
   getTodosWeek,
   getTodosSearch,
   synchronizeTodo,
+  getTodoByIdController,
 };
