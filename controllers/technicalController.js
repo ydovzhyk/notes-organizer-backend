@@ -14,6 +14,7 @@ const getTechnicalData = async (req, res, next) => {
       { value: "Подорожі", label: "Подорожі" },
       { value: "Фінанси", label: "Фінанси" },
       { value: "Родичі та друзі", label: "Родичі та друзі" },
+      { value: "Спорт та здоров'я", label: "Спорт та здоров'я" },
       { value: "Інше", label: "Інше" },
     ];
 
