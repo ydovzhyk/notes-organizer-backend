@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3.6.0
         with:
-          node-version: "16.x"
+          node-version: "20.x"
 
       - name: Install dependencies
         run: npm install
@@ -71,9 +71,6 @@ jobs:
 
       - name: Login to Heroku Container Registry
         run: echo ${{ secrets.HEROKU_API_KEY }} | docker login --username=_ --password-stdin registry.heroku.com
-
-      - name: Set Heroku stack to container
-        run: heroku stack:set container -a notes-organizer-backend
 
       - name: Push to Heroku Container Registry
         env:
