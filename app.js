@@ -20,7 +20,7 @@ app.use(logger(formatsLogger));
 const allowedOrigins = [
   "http://localhost:3000",
   "https://ydovzhyk.github.io",
-  "https://notes-organiser-yd.netlify.app/",
+  "https://notes-organiser-yd.netlify.app",
 ];
 const corsOptions = {
   origin: function (origin, callback) {
