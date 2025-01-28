@@ -137,20 +137,13 @@ const getUserController = async (req, res, next) => {
 
 const googleAuthController = async (req, res, next) => {
   try {
-    const { _id: id, referer } = req.user;
-    const paylaod = { id };
+    const { _id: id } = req.user;
+    const payload = { id };
 
-    let senderUrl = "";
-    if (referer.includes("https://ydovzhyk.github.io")) {
-      senderUrl = "https://ydovzhyk.github.io/notes-organizer/";
-    } else if (referer.includes("http://localhost:3000")) {
-      senderUrl = "http://localhost:3000/";
-    } else {
-      senderUrl = referer;
-    }
+    const origin = req.session.origin;
 
-    const accessToken = jwt.sign(paylaod, SECRET_KEY, { expiresIn: "12h" });
-    const refreshToken = jwt.sign(paylaod, REFRESH_SECRET_KEY, {
+    const accessToken = jwt.sign(payload, SECRET_KEY, { expiresIn: "12h" });
+    const refreshToken = jwt.sign(payload, REFRESH_SECRET_KEY, {
       expiresIn: "24h",
     });
     const newSession = await Session.create({
@@ -158,7 +151,7 @@ const googleAuthController = async (req, res, next) => {
     });
 
     res.redirect(
-      `${senderUrl}?accessToken=${accessToken}&refreshToken=${refreshToken}&sid=${newSession._id}`
+      `${origin}?accessToken=${accessToken}&refreshToken=${refreshToken}&sid=${newSession._id}`
     );
   } catch (error) {
     next(error);

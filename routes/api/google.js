@@ -6,20 +6,17 @@ const ctrl = require("../../controllers/authController");
 const { passport } = require("../../middlewares");
 const router = express.Router();
 
-const rememberReferer = (req, res, next) => {
-  const referer = req.headers.referer || req.headers.origin;
-  try {
-    req.session.referer = referer;
-  } catch (error) {
-    next(error);
+const rememberOrigin = (req, res, next) => {
+  const origin = req.query.origin;
+  if (origin) {
+    req.session.origin = origin;
   }
   next();
 };
 
-// google auth
 router.get(
   "/",
-  rememberReferer,
+  rememberOrigin,
   passport.authenticate("google", { scope: ["email", "profile"] })
 );
 
