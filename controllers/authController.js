@@ -139,11 +139,8 @@ const googleAuthController = async (req, res, next) => {
   try {
     const { _id: id } = req.user;
     const payload = { id };
-
     const origin = req.session.origin;
-
     const accessToken = jwt.sign(payload, SECRET_KEY, { expiresIn: "12h" });
-
     const refreshToken = jwt.sign(payload, REFRESH_SECRET_KEY, {
       expiresIn: "24h",
     });
